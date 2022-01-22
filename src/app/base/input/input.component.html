@@ -1,0 +1,25 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>{{ inputData?.fieldsName }}</mat-label>
+    <input
+      [type]="inputData?.type"
+      matInput
+      [formControl]="emailFormControl"
+      [errorStateMatcher]="matcher"
+      [placeholder]="inputData?.fieldLabel"
+      (input)="onSearchChange($event.target)"
+    />
+    <mat-hint>Errors appear instantly!</mat-hint>
+    <mat-error
+      *ngIf="
+        emailFormControl.hasError('email') &&
+        !emailFormControl.hasError('required')
+      "
+    >
+      Please enter a valid {{ inputData?.fieldsName }}
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      {{ inputData?.fieldsName }} is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</form>
